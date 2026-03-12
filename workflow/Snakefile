@@ -26,11 +26,15 @@ onerror:
     print("\n--- An error occurred in the workflow! ---\n")
 
 # target rules
-# -----------------------------------------------------
+# Generate output for all production replicates
+def get_all_outputs():
+    outputs = []
+    for sample in samples.index:
+        n_replicates = get_prod_replicates(sample)
+        for rep in range(1, n_replicates + 1):
+            outputs.append(f"results/{sample}/analysis/rep{rep}/energy.xvg")
+    return outputs
+
 rule all:
     input:
-        expand(
-            "results/{sample}/analysis/energy.xvg",
-            sample=samples.index,
-        ),
-
+        get_all_outputs(),

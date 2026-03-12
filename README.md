@@ -6,6 +6,7 @@ A modular, reproducible Snakemake workflow for running GROMACS molecular dynamic
 
 - ✅ **Configuration-driven**: Fully customizable via YAML config files (no hard-coded parameters)
 - ✅ **All-atom & Coarse-grain support**: User-selectable simulation type per sample
+- ✅ **Production replicates**: Run multiple independent production simulations with different random seeds
 - ✅ **Local & HPC execution**: Run locally or submit to SLURM clusters
 - ✅ **Checkpoint & restart**: Long-running jobs can be split and restarted using GROMACS `.cpt` files
 - ✅ **Reproducible**: Fixed random seeds, version control, parameter traceability
@@ -70,9 +71,9 @@ cluster:
 
 Edit `config/samples.tsv`:
 ```
-sample	protein_file	topology_file	sim_type	force_field
-protein1	input/protein1.gro	input/protein1.top	aa	amber14sb
-protein2	input/protein2.gro	input/protein2.top	cg	martini3
+sample	protein_file	topology_file	sim_type	force_field	prod_replicates
+protein1	input/protein1.gro	input/protein1.top	aa	amber14sb	3
+protein2	input/protein2.gro	input/protein2.top	cg	martini3	2
 ```
 
 ### 4. Run Locally
@@ -118,12 +119,14 @@ snakemake --profile profiles/slurm --jobs 10
 - Main MD simulation with checkpoint capability
 - Checkpoints written every ~10 ps (configurable)
 - Supports restart from `.cpt` files for long runs
+- **Supports multiple replicates** with different random seeds per sample
 - Uses `prod.mdp` parameters
 
 ### 6. **Analysis** (`extract_energy`, `trajectory_analysis`)
 - Energy extraction (potential, kinetic, etc.)
 - RMSD calculation relative to first frame
 - Radius of gyration (Rg)
+- **Analyzes each production replicate independently**
 - Trajectory analysis (requires MDAnalysis)
 
 ## Configuration Details
@@ -142,6 +145,29 @@ The workflow automatically:
 - Selects appropriate force field defaults
 - Validates parameter files
 - Ensures MDP files match simulation type
+
+### Production Replicates
+
+Run multiple independent production MD simulations with different random seeds:
+
+```tsv
+sample          protein_file         topology_file         sim_type    force_field    prod_replicates
+myprotein_aa    input/protein.gro    input/protein.top     aa          amber14sb      3
+myprotein_cg    input/protein.gro    input/protein.top     cg          martini3       5
+```
+
+**Features**:
+- Specify `prod_replicates` column in `samples.tsv` (default: 1)
+- Each replicate uses a unique random seed (automatically generated)
+- All replicates share the same equilibrated structure (from NPT)
+- Analysis runs independently on each replicate
+- Results organized in `results/{sample}/production/rep{N}/` directories
+
+**Why replicates?**
+- Better statistics through ensemble averaging
+- Test convergence and reproducibility
+- Generate confidence intervals for observables
+- Explore different folding pathways (for proteins)
 
 ### MDP Files
 

@@ -168,19 +168,22 @@ Tab-separated file defining simulations to run.
 | topology_file | string | yes | Path to topology file (.top) |
 | sim_type | string | yes | Simulation type: `aa` or `cg` |
 | force_field | string | no | Force field (overrides config default) |
-| replicate | integer | no | Replicate number (default: 1) |
+| prod_replicates | integer | no | Number of production runs with different seeds (default: 1) |
+| replicate | integer | no | Replicate number for multiple independent setups (default: 1) |
 
 ### Example
 ```tsv
-sample          protein_file            topology_file            sim_type    force_field
-alanine_aa      input/ala_aa.gro        input/ala_aa.top         aa          amber14sb
-alanine_cg      input/ala_cg.gro        input/ala_cg.top         cg          martini3
-lysozyme_aa     input/lysozyme.gro      input/lysozyme.top       aa          amber99sb
+sample          protein_file            topology_file            sim_type    force_field    prod_replicates
+alanine_aa      input/ala_aa.gro        input/ala_aa.top         aa          amber14sb      3
+alanine_cg      input/ala_cg.gro        input/ala_cg.top         cg          martini3       2
+lysozyme_aa     input/lysozyme.gro      input/lysozyme.top       aa          amber99sb      5
 ```
 
 ### Notes
 - File paths are relative to workflow root
-- Duplicate samples with `replicate > 1` create independent runs
+- `prod_replicates`: Independent production runs with auto-generated different seeds
+- `replicate`: Independent input structures/topologies of same system
+- Both can be combined: each (sample, replicate) pair generates N production runs
 - Force field override allows different force fields per sample
 
 ---

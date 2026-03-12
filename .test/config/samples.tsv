@@ -1,3 +1,3 @@
-sample	protein_file	topology_file	sim_type	force_field
-test_aa	input/test_aa.gro	input/test_aa.top	aa	amber14sb
-test_cg	input/test_cg.gro	input/test_cg.top	cg	martini
+sample	protein_file	topology_file	sim_type	force_field	prod_replicates
+test_aa	input/test_aa.gro	input/test_aa.top	aa	amber14sb	2
+test_cg	input/test_cg.gro	input/test_cg.top	cg	martini	3

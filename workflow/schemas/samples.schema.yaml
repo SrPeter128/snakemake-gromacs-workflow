@@ -22,6 +22,11 @@ properties:
     type: integer
     description: replicate number for multiple runs of same system
     default: 1
+  prod_replicates:
+    type: integer
+    description: number of independent production runs with different seeds
+    default: 1
+    minimum: 1
 
 required:
   - sample
