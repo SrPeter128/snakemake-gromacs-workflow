@@ -1,0 +1,39 @@
+executor: slurm
+jobs: 10
+
+# SLURM submission parameters
+# These are merged with values from config/config.yaml
+
+account: ""              # Charge account (optional)
+partition: "normal"      # Queue/partition name
+time: 1440               # Walltime in minutes (24 hours)
+mem: 8G                  # Memory per job
+cpus-per-task: 4         # CPUs per job
+nodes: 1                 # Number of nodes
+
+# Mail notifications
+mail-type: "END,FAIL"
+mail-user: ""
+
+# Optional: GPU support (uncomment if using GPU nodes)
+# gres: "gpu:1"
+
+# Optional: Array job settings
+# array-taskfile: ""
+# array-job-id: ""
+
+# Retry failed jobs
+restart-times: 0
+# job-extra: "--dependency=afterok:12345"  # Job dependencies
+
+# Default resource requests (can be overridden per rule)
+default-resources:
+  - mem_mb=8000
+  - disk_mb=50000
+  - tmpdir="/tmp"
+
+# Snakemake-specific settings
+local-cores: 0           # Don't use local cores in addition to SLURM
+latency-wait: 10         # Wait 10 seconds for file output before re-running
+max-jobs-per-second: 1   # Rate limit job submissions
+max-status-checks-per-second: 4

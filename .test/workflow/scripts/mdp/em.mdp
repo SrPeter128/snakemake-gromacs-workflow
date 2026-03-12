@@ -1,0 +1,38 @@
+; Energy Minimization MDP file
+; Common settings for all-atom and coarse-grain
+
+; run control
+integrator = steepest_descent
+emtol = 1000.0
+emstep = 0.01
+nsteps = 5000
+
+; output control
+nstlog = 100
+nstenergy = 100
+nstxout = 100
+nstxout-compressed = 0
+
+; neighbour searching
+nstlist = 10
+ns_type = grid
+rlist = 1.0
+
+; electrostatics
+coulombtype = PME
+rcoulomb = 1.0
+epsilon-r = 1
+
+; van der Waals
+rvdw = 1.0
+DispCorr = EnerPres
+
+; temperature and pressure
+Pcoupl = no
+Tcoupl = no
+
+; constraints
+constraints = h-bonds
+constraint_algorithm = lincs
+lincs_iter = 1
+lincs_order = 4

@@ -1,0 +1,53 @@
+; All-atom topology file for test
+[ defaults ]
+; nbfunc comb-rule gen-pairs fudgeLJ fudgeQQ
+1 2 yes 0.5 0.8333
+
+[ atomtypes ]
+N 7 14.007 -0.30
+CA 6 12.011 0.10
+C 6 12.011 0.55
+O 8 15.999 -0.55
+H 1 1.008 0.15
+O_a 8 15.999 -0.30
+N3 7 14.007 -0.30
+
+[ moleculetype ]
+ALA 1
+
+[ atoms ]
+1 N 1 ALA N -0.30
+2 CA 1 ALA CA 0.10
+3 C 1 ALA C 0.55
+
+[ bonds ]
+1 2 1 0.14 390000
+2 3 1 0.15 265000
+
+[ angles ]
+1 2 3 1 110.0 80.0
+
+[ dihedrals ]
+1 2 3 1 1 180.0 1.6 3
+
+[ moleculetype ]
+SOL 3
+
+[ atoms ]
+1 OW 1 SOL OW -0.834
+2 HW 1 SOL HW1 0.417
+3 HW 1 SOL HW2 0.417
+
+[ bonds ]
+1 2 1 0.1 450000
+1 3 1 0.1 450000
+
+[ angles ]
+2 1 3 1 109.47 55.0
+
+[ system ]
+Test All-Atom System
+
+[ molecules ]
+ALA 1
+SOL 100

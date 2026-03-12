@@ -1,8 +1,61 @@
+# Sample sheet with simulation specifications
 sample_sheet: ".test/config/samples.tsv"
 
-get_genome:
-  ncbi_ftp: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.fna.gz
+# Simulation parameters
+simulation:
+  # Simulation type: 'aa' for all-atom, 'cg' for coarse-grain
+  # Can be overridden per sample in samples.tsv
+  default_type: "aa"
+  
+  # Force field selection
+  force_field: "amber14sb"  # For AA: amber14sb, amber99sb, gromos54a7, etc.
+                            # For CG: martini, martini3, etc.
+  
+  # Molecular dynamics parameters
+  temperature: 310  # Kelvin (physiological temperature)
+  pressure: 1.0     # Bar
+  
+  # Simulation time parameters (adjust for your needs)
+  # Times are in ps (picoseconds)
+  nvt_time: 100     # NVT equilibration time
+  npt_time: 100     # NPT equilibration time
+  prod_time: 1000   # Production run time
 
-simulate_reads:
-  read_length: 100
-  read_number: 10000
+# Cluster/HPC settings
+cluster:
+  # Walltime for individual jobs (important for long simulations on clusters)
+  # Format: HH:MM:SS
+  # Set this based on your cluster's max time limit
+  walltime: "24:00:00"  # 24 hours per job
+  
+  # Number of cores per simulation
+  cpus: 4
+  
+  # Memory per job (in GB)
+  memory: 8
+  
+  # Queue/partition name (user should customize)
+  queue: "default"
+  
+  # Email for job notifications (optional)
+  email: ""
+
+# Output and logging
+output:
+  # Keep intermediate files (large trajectory files)
+  keep_trajectories: True
+  
+  # Compression level for output files
+  compress_trajectories: True
+
+# Analysis settings
+analysis:
+  # Extract energy for trajectory
+  extract_energy: True
+  
+  # Calculate RMSD relative to first frame
+  calculate_rmsd: True
+  
+  # Calculate radius of gyration
+  calculate_rg: True
+
