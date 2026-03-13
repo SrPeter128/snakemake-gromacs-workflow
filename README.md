@@ -4,14 +4,14 @@ A modular, reproducible Snakemake workflow for running GROMACS molecular dynamic
 
 ## Features
 
-- ✅ **Configuration-driven**: Fully customizable via YAML config files (no hard-coded parameters)
-- ✅ **All-atom & Coarse-grain support**: User-selectable simulation type per sample
-- ✅ **Production replicates**: Run multiple independent production simulations with different random seeds
-- ✅ **Local & HPC execution**: Run locally or submit to SLURM clusters
-- ✅ **Checkpoint & restart**: Long-running jobs can be split and restarted using GROMACS `.cpt` files
-- ✅ **Reproducible**: Fixed random seeds, version control, parameter traceability
-- ✅ **Modular design**: Independent rules for each simulation stage (prep, minimize, equilibrate, production, analysis)
-- ✅ **MDP template files**: Pre-configured MD parameter files for easy customization
+- **Configuration-driven**: Fully customizable via YAML config files (no hard-coded parameters)
+- **All-atom & Coarse-grain support**: User-selectable simulation type per sample
+- **Production replicates**: Run multiple independent production simulations with different random seeds
+- **Local & HPC execution**: Run locally or submit to SLURM clusters
+- **Checkpoint & restart**: Long-running jobs can be split and restarted using GROMACS `.cpt` files
+- **Reproducible**: Fixed random seeds, version control, parameter traceability
+- **Modular design**: Independent rules for each simulation stage (prep, minimize, equilibrate, production, analysis)
+- **MDP template files**: Pre-configured MD parameter files for easy customization
 
 ## Requirements
 
@@ -33,9 +33,7 @@ A modular, reproducible Snakemake workflow for running GROMACS molecular dynamic
 # Clone the workflow
 git clone <repo-url>
 cd snakemake-gromacs-workflow
-
-# Install dependencies (Snakemake + analysis tools)
-pip install snakemake mdanalysis numpy scipy
+TBD
 ```
 
 ### 2. Prepare Input Data
@@ -82,10 +80,10 @@ protein2	input/protein2.gro	input/protein2.top	cg	martini3	2
 snakemake --dry-run
 
 # Run with 4 cores
-snakemake --cores 4
+snakemake --cores 24
 
 # Run with conda environments for analysis
-snakemake --cores 4 --use-conda
+snakemake --cores 24 --use-conda
 ```
 
 ### 5. Run on SLURM Cluster
