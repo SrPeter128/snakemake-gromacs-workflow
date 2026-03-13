@@ -6,9 +6,11 @@ rule prepare_topology:
     input:
         structure="input/{sample}.gro",
         topology="input/{sample}.top",
+        index="input/{sample}.ndx",
     output:
         structure="results/{sample}/topology/{sample}.gro",
         topology="results/{sample}/topology/{sample}.top",
+        index="results/{sample}/topology/{sample}.ndx",
     log:
         "results/{sample}/topology/{sample}.log",
     message:
@@ -19,5 +21,6 @@ rule prepare_topology:
         """
         cp {input.structure} {output.structure}
         cp {input.topology} {output.topology}
+        cp {input.index} {output.index}
         echo "Prepared topology for {params.sim_type} simulation" > {log}
         """

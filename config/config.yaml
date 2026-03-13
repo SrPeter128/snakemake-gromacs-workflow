@@ -1,5 +1,5 @@
 # Sample sheet with simulation specifications
-sample_sheet: ".test/config/samples.tsv"
+sample_sheet: "config/samples.tsv"
 
 # Simulation parameters
 simulation:

@@ -45,6 +45,8 @@ input/
   ├── protein2.gro
   └── protein2.top
 ```
+**Important**: To make it consistant with dffnm of gromacs, every file corresponding to a simulation should be named the same e.g. sample1.gro sameple1.ndx sample1.top ... and so on.
+
 
 ### 3. Configure Simulation
 Edit `config/config.yaml`:

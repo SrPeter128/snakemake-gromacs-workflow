@@ -4,12 +4,6 @@ properties:
   sample:
     type: string
     description: sample name/identifier for the simulation
-  protein_file:
-    type: string
-    description: path to input structure file (PDB, GRO, etc.)
-  topology_file:
-    type: string
-    description: path to topology file (.top file)
   sim_type:
     type: string
     enum: ["aa", "cg"]
@@ -30,7 +24,5 @@ properties:
 
 required:
   - sample
-  - protein_file
-  - topology_file
   - sim_type
 
