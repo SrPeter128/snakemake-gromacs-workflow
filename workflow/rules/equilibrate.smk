@@ -15,7 +15,6 @@ rule nvt_equilibrate:
         sim_type=lambda wildcards: get_sim_type(wildcards.sample),
     shell:
         """
-        base_dir=$PWD
         gmx grompp -f {input.mdp} \
                    -c {input.structure} \
                    -p {input.topology} \
@@ -42,7 +41,6 @@ rule npt_equilibrate:
         sim_type=lambda wildcards: get_sim_type(wildcards.sample),
     shell:
         """
-        base_dir=$PWD
         gmx grompp -f {input.mdp} \
                    -c {input.structure} \
                    -p {input.topology} \

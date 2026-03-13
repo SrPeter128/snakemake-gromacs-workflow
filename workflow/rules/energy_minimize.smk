@@ -15,13 +15,11 @@ rule energy_minimize:
         sim_type=lambda wildcards: get_sim_type(wildcards.sample),
     shell:
         """
-        base_dir=$PWD
         gmx grompp -f {input.mdp} \
                    -c {input.structure} \
                    -p {input.topology} \
                    -n {input.index} \
                    -o $(dirname {output.structure})/em.tpr -v
-        echo $PWD
         cd $(dirname {output.structure})
         gmx mdrun -deffnm em -ntmpi 1 -v
         
