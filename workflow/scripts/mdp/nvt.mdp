@@ -30,7 +30,7 @@ DispCorr = EnerPres
 Tcoupl = V-rescale
 tau_t = 0.1 0.1
 ref_t = 310 310
-tc-grps = Protein Non-Protein
+tc-grps = SOLION LIPIDS
 
 ; pressure control
 Pcoupl = no
