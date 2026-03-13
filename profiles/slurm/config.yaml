@@ -4,7 +4,7 @@ jobs: 10
 # SLURM submission parameters
 # These are merged with values from config/config.yaml
 
-account: ""              # Charge account (optional)
+account: "tron"              # Charge account (optional)
 partition: "normal"      # Queue/partition name
 time: 1440               # Walltime in minutes (24 hours)
 mem: 8G                  # Memory per job
@@ -13,7 +13,7 @@ nodes: 1                 # Number of nodes
 
 # Mail notifications
 mail-type: "END,FAIL"
-mail-user: ""
+mail-user: "matthias.peter@tron-mainz.de
 
 # Optional: GPU support (uncomment if using GPU nodes)
 # gres: "gpu:1"
