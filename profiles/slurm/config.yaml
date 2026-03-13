@@ -16,11 +16,11 @@ mail-type: "END,FAIL"
 mail-user: "matthias.peter@tron-mainz.de
 
 # Optional: GPU support (uncomment if using GPU nodes)
-# gres: "gpu:1"
+# gres: gpu:1
 
 # Optional: Array job settings
-# array-taskfile: ""
-# array-job-id: ""
+# array-taskfile: 
+# array-job-id: 
 
 # Retry failed jobs
 restart-times: 0
