@@ -5,35 +5,6 @@ properties:
     type: string
     description: path to sample-sheet TSV file
 
-  simulation:
-    type: object
-    properties:
-      default_type:
-        type: string
-        enum: ["aa", "cg"]
-        description: default simulation type (all-atom or coarse-grain)
-      force_field:
-        type: string
-        description: force field name (e.g., amber14sb, gromos54a7, martini)
-      temperature:
-        type: number
-        description: temperature in Kelvin
-        minimum: 0
-      pressure:
-        type: number
-        description: pressure in Bar
-        minimum: 0
-      nvt_time:
-        type: number
-        description: NVT equilibration time in ps
-      npt_time:
-        type: number
-        description: NPT equilibration time in ps
-      prod_time:
-        type: number
-        description: production run time in ps
-    required: ["default_type", "force_field", "temperature", "pressure"]
-
   cluster:
     type: object
     properties:
@@ -77,5 +48,4 @@ properties:
 
 required:
   - sample_sheet
-  - simulation
   - cluster

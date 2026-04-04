@@ -49,18 +49,13 @@ input/
 
 
 ### 3. Configure Simulation
-Edit `config/config.yaml`:
+Most of the configurations for the simulations still happens in the 
+.mdp files which are stored under `scripts/mdp`. In the config file, the path to the sample sheet is given as also some slurm parameters are defined, if the workflow should run on a slum cluster. 
+Most of the configurations for the simulations still happens in the 
+
+Edit `config/config.yaml`
 ```yaml
 sample_sheet: "config/samples.tsv"
-
-simulation:
-  default_type: "aa"              # 'aa' or 'cg'
-  force_field: "amber14sb"        # GROMACS force field
-  temperature: 310                # K (physiological)
-  pressure: 1.0                   # Bar
-  nvt_time: 100                   # ps
-  npt_time: 100                   # ps
-  prod_time: 1000                 # ps (adjust as needed)
 
 cluster:
   walltime: "24:00:00"            # Per-job time limit
